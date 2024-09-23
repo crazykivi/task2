@@ -14,13 +14,16 @@ class sdbh
 
     function __construct(array $settings = [])
     {
-        $this->port = $settings['host'] ?: 3306;
-        $this->host = $settings['host'] ?: 'localhost';
-        $this->dbname = $settings['dbname'] ?: 'test_a25';
-        $this->user = $settings['user'] ?: 'root';
-        $this->pass = $settings['pass'] ?: '';
+        $this->port = $settings['port'] ?? 3306; // изменил 'host' на 'port'
+        $this->host = $settings['host'] ?? 'localhost';
+        $this->dbname = $settings['dbname'] ?? 'test_a25';
+        $this->user = $settings['user'] ?? 'root';
+        $this->pass = $settings['pass'] ?? '';
         $mysql_conn = mysqli_connect($this->host, $this->user, $this->pass, $this->dbname, $this->port);
-
+        if (!$mysql_conn) {
+            die('Connection error: ' . mysqli_connect_error());
+        }
+        
         $this->sql_read = $mysql_conn;
         $this->sql_write = false;
     }
