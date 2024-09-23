@@ -1,6 +1,10 @@
 <?php
+
 namespace App;
-require_once 'Infrastructure/sdbh.php'; use sdbh\sdbh; 
+
+require_once 'Infrastructure/sdbh.php';
+
+use sdbh\sdbh;
 
 class Calculate
 {
@@ -29,7 +33,7 @@ class Calculate
                 }
             }
             $total_price = $product_price * $days;
-        }else{
+        } else {
             $total_price = $price * $days;
         }
 
